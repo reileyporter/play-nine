@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour {
 
-    public List<int> deck;
+    /* TODO: make deck private, add helper function to
+     * allow other classes to call it safely
+     */
+    public List<int> deck; /* actual cards */
     public int numDuplicateDecks = 4;
     public int highestCardNumber = 10; // still has 0 and -5
     GameObject tempObject;
@@ -15,11 +18,12 @@ public class Deck : MonoBehaviour {
     public GameObject baseCard;
     public GameObject topPosition;
     public RoundManager roundManager;
-    Behaviour halo;
+    public Behaviour halo;
 
     void Start()
     {
-        // generateDeck();
+        /* generate deck should happen somewhere else? */
+        GenerateDeck();
         halo = (Behaviour)GetComponent("Halo");
         roundManager = GetComponentInParent <RoundManager>();
         totalCards = 0;
@@ -68,8 +72,9 @@ public class Deck : MonoBehaviour {
             card = tempCard.GetComponent<Card>();
             // sets the approprate value for the card
             card.SetValue(selectedvalue);
-            // sets a suit for the card
-            card.SetSuit(Random.Range(0, 4));
+            // sets a class for the card
+            card.SetClass(Random.Range(0, 4));
+            /* TODO: add setType here */
             card.transform.SetParent(roundManager.transform);
             // sets the target for the card so it moves to the field
 
@@ -98,8 +103,9 @@ public class Deck : MonoBehaviour {
 		card = tempCard.GetComponent<Card>();
 		// sets the approprate value for the card
 		card.SetValue(selectedvalue);
-		// sets a suit for the card
-		card.SetSuit(Random.Range(0, 4));
+		// sets a class for the card
+		card.SetClass(Random.Range(0, 4));
+        /* TODO: add setType here */
         // sets the target for the card so it moves to the field
         card.transform.SetParent(roundManager.transform);
         discardPile.SetFlippedCard(card);

@@ -14,17 +14,17 @@ public class CardText : MonoBehaviour {
  
         textMesh.text = cardScript.GetValue().ToString();
 
-        if (cardScript.suit == Card.Suit.hearts)
+        if (cardScript.cardClass == Card.Class.hearts)
         {
             textMesh.color = Color.red;
             textMesh.text += " <3";
         }
-        else if (cardScript.suit == Card.Suit.diamonds)
+        else if (cardScript.cardClass == Card.Class.diamonds)
         {
             textMesh.color = Color.red;
             textMesh.text += " <>";
         }
-        else if (cardScript.suit == Card.Suit.clubs)
+        else if (cardScript.cardClass == Card.Class.clubs)
         {
             textMesh.color = Color.black;
             textMesh.text += " ----{}";

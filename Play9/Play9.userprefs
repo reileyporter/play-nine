@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{835B2C5F-2C99-CE23-12FE-2CC5D1508BB5}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Field.cs">
+    <Files>
+      <File FileName="Assets/Deck.cs" Line="76" Column="42" />
+      <File FileName="Assets/Card.cs" Line="78" Column="10" />
+      <File FileName="Assets/Field.cs" Line="70" Column="10" />
+      <File FileName="Assets/RoundManager.cs" Line="61" Column="5" />
+      <File FileName="Assets/TurnTracker.cs" Line="3" Column="1" />
+      <File FileName="Assets/CardText.cs" Line="8" Column="23" />
+      <File FileName="Assets/ScoreTracker.cs" Line="15" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Play9 PreferredExecutionTarget="Unity.Editor" />
+</Properties>

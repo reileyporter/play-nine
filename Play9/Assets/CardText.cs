@@ -12,19 +12,19 @@ public class CardText : MonoBehaviour {
         cardScript = GetComponentInParent<Card>();
         textMesh = GetComponent<TextMesh>();
  
-        textMesh.text = cardScript.GetValue().ToString();
+        textMesh.text = cardScript.Value.ToString();
 
-        if (cardScript.cardClass == Card.Class.hearts)
+        if (cardScript.CardClass == Card.Class.hearts)
         {
             textMesh.color = Color.red;
             textMesh.text += " <3";
         }
-        else if (cardScript.cardClass == Card.Class.diamonds)
+        else if (cardScript.CardClass == Card.Class.diamonds)
         {
             textMesh.color = Color.red;
             textMesh.text += " <>";
         }
-        else if (cardScript.cardClass == Card.Class.clubs)
+        else if (cardScript.CardClass == Card.Class.clubs)
         {
             textMesh.color = Color.black;
             textMesh.text += " ----{}";

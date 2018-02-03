@@ -15,7 +15,7 @@ public class Field : MonoBehaviour
     public List<GameObject> fieldPositions;
     public RoundManager roundManager;
     public int playerNumber;
-    bool full;
+    public bool full;
 
     void Start()
     {
@@ -42,12 +42,12 @@ public class Field : MonoBehaviour
     {
         if (cards.Count < maxCards)
         {
-            card.SetTarget(fieldPositions[cards.Count]);
+            card.TargetPosition = fieldPositions[cards.Count];
             cards.Add(card);
 			//Debug.Log(cards.Count);
 			if (cards.Count == maxCards)
                 full = true;
-            card.transform.SetParent(card.targetPosition.transform);
+            card.transform.SetParent(card.TargetPosition.transform);
         }
         else Debug.Log("Field is full");
         
@@ -71,13 +71,13 @@ public class Field : MonoBehaviour
             // no permission for turn, set all cards to non selectable
             for (int i = 0; i < cards.Count; i++)
             {
-                cards[i].selectable = false;
+                cards[i].Selectable = false;
             }
         }
 		// has permission, sets cards to be selectable
 		else for (int i = 0; i < cards.Count; i++)
 		{
-			cards[i].selectable = true;
+			cards[i].Selectable = true;
 		}
     }
 }

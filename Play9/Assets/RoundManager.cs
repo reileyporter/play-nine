@@ -97,7 +97,7 @@ public class RoundManager : MonoBehaviour
             for (int j = 0; j < numberPlayers; j++)
             {
                 //Debug.Log("dealing card");
-				deck.targetField = fields[j];
+				deck.TargetField = fields[j];
 				deck.DealCard();
                 yield return new WaitForSeconds(.1f);
             }
@@ -126,17 +126,17 @@ public class RoundManager : MonoBehaviour
             // clears deck and generates new one
             deck.GenerateDeck();
             // clears flipped cards
-            if (deck.flippedCard != null)
+            if (deck.FlippedCard != null)
             {
-                Destroy(deck.flippedCard.gameObject);
-                deck.flippedCard = null;
+                Destroy(deck.FlippedCard.gameObject);
+                deck.FlippedCard = null;
             }
-            if (discardPile.flippedCard != null)
+            if (discardPile.FlippedCard != null)
             {
-                Destroy(discardPile.flippedCard.gameObject);
-                discardPile.flippedCard = null;
+                Destroy(discardPile.FlippedCard.gameObject);
+                discardPile.FlippedCard = null;
             }
-            deck.totalCards = 0;
+            deck.TotalCards = 0;
             Start();
         }
     }

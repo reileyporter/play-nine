@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour {
 
-    /* TODO: make deck private, add helper function to
-     * allow other classes to call it safely
-     */
+    /* TODO: encapsulate deck properly */
     public List<int> deck; /* actual cards */
-    public int numDuplicateDecks = 4;
-    public int highestCardNumber = 10; // still has 0 and -5
-    GameObject tempObject;
-    public Field targetField;
-    public Card card;
-    public Card flippedCard;
-    public int totalCards;
-    public GameObject baseCard;
+    private int numDuplicateDecks = 4;
+    private int highestCardNumber = 10; // still has 0 and -5
+    private GameObject tempObject;
+
+    /* do we need this targetField reference?
+     * we could probably just get away with
+     * leaving it out and referencing the 
+     * only field in the entire game instance...
+     * either way...
+     * TODO: encapsulate targetField properly
+     */
+    private Field targetField;
+    public Field TargetField { get; set; }
+    private Card card;
+    private Card flippedCard;
+    public Card FlippedCard { get; set; }
+    private int totalCards;
+    public int TotalCards { get; set; }
+    public GameObject baseCard; // Stopped here, continue encapsulation
     public GameObject topPosition;
     public RoundManager roundManager;
     public Behaviour halo;
@@ -25,7 +34,7 @@ public class Deck : MonoBehaviour {
         /* generate deck should happen somewhere else? */
         GenerateDeck();
         halo = (Behaviour)GetComponent("Halo");
-        roundManager = GetComponentInParent <RoundManager>();
+        roundManager = GetComponentInParent<RoundManager>();
         totalCards = 0;
     }
 
@@ -33,8 +42,8 @@ public class Deck : MonoBehaviour {
 	{
 		if (flippedCard != null)
 		{
-			flippedCard.SetTarget(topPosition);
-			flippedCard.upright = true;
+			flippedCard.TargetPosition = topPosition;
+			flippedCard.Upright = true;
 		}
 		if (deck.Count == 0)
 		{
@@ -61,7 +70,7 @@ public class Deck : MonoBehaviour {
     // thisll be used at the start of the round
 	public void DealCard ()
     {
-        if (deck.Count > 0 && targetField.IsFull() == false)
+        if (deck.Count > 0 && TargetField.IsFull() == false)
         {
             // selects random card then removes it
             int selectedvalue = deck[Random.Range(0, deck.Count)];
@@ -71,15 +80,15 @@ public class Deck : MonoBehaviour {
             tempCard.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
             card = tempCard.GetComponent<Card>();
             // sets the approprate value for the card
-            card.SetValue(selectedvalue);
+            card.Value = selectedvalue;
             // sets a class for the card
-            card.SetClass(Random.Range(0, 4));
-            /* TODO: add setType here */
-            card.transform.SetParent(roundManager.transform);
+            card.CardClass = (Card.Class)Random.Range(0, 4);
+            // sets a type for the card
+            card.CardType = (Card.Type)Random.Range(0, 5);
             // sets the target for the card so it moves to the field
-
+            card.transform.SetParent(roundManager.transform);
             // pass the card to the field
-            targetField.AddCard(card);
+            TargetField.AddCard(card);
             totalCards--;
 
         } // add logic for reshuffle or maybe make the update check for cards == 0 so it'll do it automatically
@@ -87,7 +96,7 @@ public class Deck : MonoBehaviour {
 
     public void AddCard(Card tempCard)
     {
-        deck.Add(card.GetValue());
+        deck.Add(card.Value);
     }
 
 
@@ -102,10 +111,11 @@ public class Deck : MonoBehaviour {
 		tempCard.transform.rotation = new Quaternion(0f, 180f, 0f, 0f);
 		card = tempCard.GetComponent<Card>();
 		// sets the approprate value for the card
-		card.SetValue(selectedvalue);
+		card.Value = selectedvalue;
 		// sets a class for the card
-		card.SetClass(Random.Range(0, 4));
-        /* TODO: add setType here */
+		card.CardClass = (Card.Class)Random.Range(0, 4);
+        // sets a type for the card
+        card.CardType = (Card.Type)Random.Range(0, 5);
         // sets the target for the card so it moves to the field
         card.transform.SetParent(roundManager.transform);
         discardPile.SetFlippedCard(card);

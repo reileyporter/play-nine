@@ -7,57 +7,74 @@ public class Card : MonoBehaviour
     /* Variables */
 
     /* unity-specific */
-    public GameObject targetPosition;  /* handle for targetPos */
+    private GameObject targetPosition;  /* handle for targetPos */
+    public GameObject TargetPosition { get; set; }
     private RoundManager roundManager; /* handle for roundManager obj */
     public Behaviour halo;             /* ring of light around cards */
 
     /* enum variables */
-    public Class cardClass; /* class of card */
-    public Type cardType;   /* type of card */
+    private Class cardClass; /* class of card */
+    public Class CardClass { get; set; }
+    private Type cardType;   /* type of card */
+    public Type CardType { get; set; }
 
     /* primitives */
-    public int value;   /* value of card */
-    public float rotationSpeed = .1f;
+    private int value;   /* value of card */
+    public int Value { get; set; }
+    private string modifier; /* modifier of card */
+    public string Modifier { get; set; }
+    private float rotationSpeed = .1f; /* not used yet? */
 
     /* bool flags */
-    public bool selectable = true; /* flag */
-    public bool pileCard;          /* Used later */
-    public bool upright;           /* flag */
+    private bool selectable; /* flag */
+    public bool Selectable { get; set; }
+    private bool pileCard;   /* Used later */
+    private bool upright = true;    /* flag */
+    public bool Upright { get; set; }
 
     /* enums */
     public enum Class
     {
+
         diamonds,
-        clubs,
         hearts,
+        clubs,
         spades
+
+        /* for later
+        wizard,
+        sprite,
+        human,
+        beast,
+        golem
+        */
     }
 
 
     public enum Type
     {
-        typeA,
-        typeB,
-        typeC,
-        typeD
+        fire,
+        air,
+        lightning,
+        nature,
+        earth,
+        water
     }
  
-    void Start()
-    {
+    void Start() {
 		halo = (Behaviour)GetComponent("Halo");
 		roundManager = GetComponentInParent<RoundManager>();
     }
 
 
-    void Update()
-    {
-        if (targetPosition != null &&
-            Vector3.Distance(targetPosition.transform.position, transform.position) > .001f)
+    void Update() {
+        if (TargetPosition != null &&
+            Vector3.Distance(TargetPosition.transform.position, transform.position) > .001f)
         {
             transform.position = Vector3.Lerp(transform.position,
-                targetPosition.transform.position, Time.deltaTime * 2);
+                TargetPosition.transform.position, Time.deltaTime * 2);
         }
-        else Debug.Log("targetPosition is null");
+        else Debug.Log("targetPosition is null"); /* this prints so much */
 
         if (upright == true)
         {
@@ -70,7 +87,7 @@ public class Card : MonoBehaviour
     // Mouse Functions
     private void OnMouseEnter()
     {
-        if (selectable)
+        if (Selectable)
         {
             halo.enabled = true;
             Debug.Log("hover halo on");
@@ -79,7 +96,7 @@ public class Card : MonoBehaviour
     }
     private void OnMouseExit()
     {
-        if (selectable)
+        if (Selectable)
         {
             halo.enabled = false;
             Debug.Log("hover halo gone");
@@ -89,69 +106,10 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (selectable)
+        if (Selectable)
         {
             Debug.Log("card mousedown working");
             roundManager.turnTaken = true;
-        }
-    }
-
-
-    /* setters/getters */
-    /* card value */
-    public void SetValue(int a) { value = a; }
-	public int GetValue() { return value; }
-
-    /* target */
-    public void SetTarget(GameObject a) { targetPosition = a; }
-
-    /* class */
-    /* TODO: enums are ints, we can just pass those instead of int a */
-	public void SetClass(int a)
-	{
-        switch(a)
-        {
-            case 0:
-                cardClass = Class.diamonds;
-                break;
-            case 1:
-                cardClass = Class.clubs;
-                break;
-            case 2:
-                cardClass = Class.hearts;
-                break;
-            case 3:
-                cardClass = Class.spades;
-                break;
-            default:
-                Debug.Log("error: non-existent class used");
-                /* TODO: add error handling here */
-                break;
-        }
-	}
-
-    /* type */
-    /* TODO: enums are ints, we can just pass those instead of int a */
-    public void setType(int a)
-    {
-        switch(a)
-        {
-            case 0:
-                cardType = Type.typeA;
-                break;
-            case 1:
-                cardType = Type.typeB;
-                break;
-            case 2:
-                cardType = Type.typeC;
-                break;
-            case 3:
-                cardType = Type.typeD;
-                break;
-            default:
-                Debug.Log("error: non-existent type used");
-                /* TODO: add error handling here */
-                break;
         }
     }
 }

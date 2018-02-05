@@ -13,11 +13,8 @@ public class Card : MonoBehaviour {
 
     // Logic Related Variables
 
-    // Test Variables
-
     // Use this for initialization
     void Start () {
-        // Test stuff
         proximity = GetComponentInChildren<Proximity>();
 	}
 	
@@ -25,7 +22,17 @@ public class Card : MonoBehaviour {
 	void Update () {
         if (cardsAssignedPosition != null && !grabbed)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, cardsAssignedPosition.transform.position, ref velocity, /*smoothTime*/ .1f, /*max speed, didn't seem to affect much */ 1000.0f);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(cardsAssignedPosition.transform.position.x, cardsAssignedPosition.transform.position.y, -1), ref velocity, /*smoothTime*/ .1f, /*max speed, didn't seem to affect much */ 1000.0f);
+        }
+        else if (cardsAssignedPosition != null && grabbed)
+        {
+            // telegraph where the card would go to if let go
+            /*
+            if (!proximity.IsListEmpty() && proximity.GetClosest().GetComponentInParent<CardPosition>().isValidMove == true)
+            {
+                proximity.GetClosest();
+            }
+            */
         }
 	}
 
@@ -35,7 +42,7 @@ public class Card : MonoBehaviour {
 		targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         // at this point the card would snap to the center of the mouse, so I added the smoothing because of that
 
-        // z position needs to still be set properly
+        // z position needs to still needed to be set
         targetPosition.z = -1f;
         // Moves the card to position of the target, and dampens the 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, /*smoothTime*/ .1f , 1000.0f);

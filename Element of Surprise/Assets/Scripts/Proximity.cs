@@ -4,25 +4,17 @@ using UnityEngine;
 
 public class Proximity : MonoBehaviour {
     public List<GameObject> nearbyObjects;
-    Card card;
-
-    private void Start()
-    {
-        card = GetComponentInParent<Card>();
-    }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "CardPosition")
             nearbyObjects.Add(coll.gameObject);
-
     }
 
     void OnTriggerExit2D(Collider2D coll)
 	{
         if (coll.gameObject.tag == "CardPosition")
         nearbyObjects.Remove(coll.gameObject);
-
     }
 
     public bool IsListEmpty()

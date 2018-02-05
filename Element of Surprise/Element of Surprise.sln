@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio for Mac
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Element of Surprise", "Element of Surprise.csproj", "{4DE78CE7-D954-0D32-E67D-A3A3C62D5F57}"
 EndProject
 Global

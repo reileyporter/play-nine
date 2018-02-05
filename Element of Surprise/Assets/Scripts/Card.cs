@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Card : MonoBehaviour {
-
     // UI related Variables
     Vector3 targetPosition; // for following the mouse around
-    GameObject cardsNormalPosition; // where the card should be, as assigned by the deck or discard pile
+    public GameObject cardsAssignedPosition; // where the card should be, as assigned by the deck or discard pile
     Vector3 velocity = Vector3.zero; // for the SmoothDamp function
+    bool grabbed = false;
+    public List<GameObject> nearbyObjects;
+    Proximity proximity;
 
     // Logic Related Variables
 
     // Test Variables
-    SpriteRenderer spriteRenderer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         // Test stuff
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        proximity = GetComponentInChildren<Proximity>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (cardsNormalPosition != null)
+        if (cardsAssignedPosition != null && !grabbed)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, cardsNormalPosition.transform.position, ref velocity, /*smoothTime*/ .1f, 1000.0f);
+            transform.position = Vector3.SmoothDamp(transform.position, cardsAssignedPosition.transform.position, ref velocity, /*smoothTime*/ .1f, /*max speed, didn't seem to affect much */ 1000.0f);
         }
 	}
 
@@ -38,5 +39,21 @@ public class Card : MonoBehaviour {
         targetPosition.z = -1f;
         // Moves the card to position of the target, and dampens the 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, /*smoothTime*/ .1f , 1000.0f);
+    }
+
+    private void OnMouseDown()
+    {
+        grabbed = true;
+    }
+
+    private void OnMouseUp()
+    {
+        grabbed = false;
+        // This allows it to shift between targets
+        if (proximity.IsListEmpty() == false)
+        {
+            if (proximity.GetClosest().GetComponentInParent<CardPosition>().isValidMove == true)
+                cardsAssignedPosition = proximity.GetClosest();
+        }
     }
 }

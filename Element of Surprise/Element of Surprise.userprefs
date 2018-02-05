@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{4DE78CE7-D954-0D32-E67D-A3A3C62D5F57}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Card.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Proximity.cs">
     <Files>
-      <File FileName="Assets/Scripts/Card.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Card.cs" Line="26" Column="10" />
+      <File FileName="Assets/Scripts/Proximity.cs" Line="22" Column="1" />
+      <File FileName="../../NorseTD/Assets/Scripts/Targetting.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Element_220of_220Surprise PreferredExecutionTarget="Unity.Editor" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>

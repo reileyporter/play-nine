@@ -330,6 +330,7 @@
     <Compile Include="Assets\Scripts\Field.cs" />
     <Compile Include="Assets\Scripts\Hand.cs" />
     <Compile Include="Assets\Scripts\Match.cs" />
+    <Compile Include="Assets\Scripts\Proximity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

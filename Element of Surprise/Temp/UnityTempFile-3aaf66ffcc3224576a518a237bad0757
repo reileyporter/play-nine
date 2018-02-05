@@ -185,8 +185,10 @@
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
 -define:ENABLE_VSTU
-'Assets/Card.cs'
-'Assets/NewBehaviourScript.cs'
+'Assets/Scripts/Card.cs'
+'Assets/Scripts/Field.cs'
+'Assets/Scripts/Hand.cs'
+'Assets/Scripts/Match.cs'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
 -r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.dll'

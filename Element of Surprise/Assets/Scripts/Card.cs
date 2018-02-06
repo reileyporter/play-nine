@@ -12,6 +12,26 @@ public class Card : MonoBehaviour {
     Proximity proximity;
 
     // Logic Related Variables
+    public enum Class
+    {
+        wizard,
+        sprite,
+        human,
+        beast,
+        golem
+    }
+    public Class cardClass;
+
+    public enum Type
+    {
+        fire,
+        air,
+        lightning,
+        nature,
+        earth,
+        water
+    }
+    public Type cardType;
 
     // Use this for initialization
     void Start () {
@@ -35,6 +55,11 @@ public class Card : MonoBehaviour {
             */
         }
 	}
+
+    public void FlipOver()
+    {
+
+    }
 
     void OnMouseDrag()
     {

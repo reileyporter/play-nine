@@ -13,4 +13,9 @@ public class Match : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    // Giving a card to a player
+    // Check if hands are too full
+    // Deck.Dealcard() (returns a gameobject aka card)
+    // Hand.recieveCard(card)
 }

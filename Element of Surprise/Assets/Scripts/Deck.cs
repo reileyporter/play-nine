@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour {
     // Visual Variables
-    GameObject deckTop;
-    public GameObject cardBack;
+    GameObject cardBack; // if the deck is nonempty then this will be visible, it is the visual back of the cards
     Card card;
 
     // Gameplay Variables
     List<int> deckTypes;
     List<int> deckClasses;
-    int numDecks, totalCards;
+    int numDecks = 3;
+    int totalCards = 0;
     
 
 
     // Use this for initialization
     void Start()
     {
-        deckTop = transform.GetChild(0).gameObject; // gets the cards back
+        // had to instantiate the lists
+        deckClasses = new List<int>();
+        deckTypes = new List<int>();
+
+        cardBack = transform.GetChild(0).gameObject; // gets the cards back, might not work if the children arent set up right
         GenerateDeck(); 
     }
 
     public void GenerateDeck()
     {
-        deckTypes.Clear();
-        deckClasses.Clear();
+        if (deckTypes.Count != 0 || deckClasses.Count != 0)
+        {
+            deckTypes.Clear();
+            deckClasses.Clear();
+        }
+
         for (int i = 0; i < numDecks; i++)
         {
             // j < num types * num classes
@@ -40,9 +48,9 @@ public class Deck : MonoBehaviour {
 
     // instantiates card then passes it to the targetted player's field
     // thisll be used at the start of the round
-    public void DealCard(Hand hand)
+    public GameObject DealCard(Hand hand)
     {
-        if (totalCards > 0 && hand.IsFull() == false)
+        if (totalCards > 0)
         {
             // selects random card, saves its value, then removes it
             int randomValue = Random.Range(0, deckClasses.Count);
@@ -50,6 +58,7 @@ public class Deck : MonoBehaviour {
             int selectedType = deckTypes[randomValue];
             deckClasses.Remove(randomValue);
             deckTypes.Remove(randomValue);
+
             // generates a card to be passed
             var tempCard = Instantiate(cardBack, transform.position, transform.rotation);
             card = tempCard.GetComponent<Card>();
@@ -67,7 +76,9 @@ public class Deck : MonoBehaviour {
             // TargetField.AddCard(card);
             totalCards--;
 
+            return tempCard;
         } // add logic for reshuffle or maybe make the update check for cards == 0 so it'll do it automatically
+        else return null;
     }
 
 }

@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hand : MonoBehaviour {
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    List<Card> cards;
 
-    public bool IsFull()
+    private void Start()
     {
-        Debug.Log("TODO");
-        return true;
+        cards = new List<Card>();
+    }
+
+    void DiscardCard()
+    {
+
+    }
+
+    public void RecieveCard()
+    {
+
     }
 }

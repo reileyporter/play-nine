@@ -58,6 +58,23 @@ public class Card : MonoBehaviour {
 
     public void FlipOver()
     {
+        Rotate90();
+        // Instantiate card based on values and delete old one
+        Rotate90();
+    }
+
+    void Rotate90()
+    {
+        var oldRotation = transform.rotation;
+        transform.Rotate(0, -90, 0);
+        var newRotation = transform.rotation;
+
+        for (float t = 0.0f; t <= 1.0; t += Time.deltaTime)
+        {
+            transform.rotation = Quaternion.Slerp(oldRotation, newRotation, t);
+        }
+
+        transform.rotation = newRotation; // To make it come out at exactly 90 degrees
 
     }
 

@@ -2,22 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hand : MonoBehaviour {
+public class Hand : CardContainer {
+    int maxCards = 10;
     List<Card> cards;
+    List<CardPosition> cardSlots;
 
     private void Start()
     {
         cards = new List<Card>();
+        GenerateSlots(maxCards);
     }
 
-    // for when you want to send a card from the hand to the discard pile
-    void DiscardCard()
+    //constructor
+    public Hand()
     {
 
     }
 
-    // getting a card from a deck
-    public void RecieveCard(Card card)
+    private void GenerateSlots(int numSlots)
     {
 
     }

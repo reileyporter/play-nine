@@ -3,11 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Match : MonoBehaviour {
+    private int numPlayers = 4;
+    private int deckCount = 3;
+    private List<Player> players;
+    private bool rankedFlag;
+    private Deck matchDeck;
+    private Discard matchDiscard;
+    private float matchStart;
+    private float TurnTimeRemaining;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    Match(bool ranked)
+    {
+        rankedFlag = ranked;
+    }
+
+    private void Deal(Player player, CardContainer dest)
+    {
+
+    }
+
+    private void Swap(Card card, CardContainer dest, CardContainer src)
+    {
+
+    }
+
+    private void PlayerTurn()
+    {
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

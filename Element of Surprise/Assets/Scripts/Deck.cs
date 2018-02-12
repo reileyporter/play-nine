@@ -2,30 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour {
+public class Deck : CardContainer {
     // Visual Variables
     GameObject cardBack; // if the deck is nonempty then this will be visible, it is the visual back of the cards
     Card card;
-
-    // Gameplay Variables
-    List<int> deckTypes;
-    List<int> deckClasses;
-    int numDecks = 3;
-    int totalCards = 0;
+    private int numCards;
+    public int NumCards { get; set; }
     
 
 
     // Use this for initialization
     void Start()
     {
-        // had to instantiate the lists
-        deckClasses = new List<int>();
-        deckTypes = new List<int>();
-
         cardBack = transform.GetChild(0).gameObject; // gets the cards back, might not work if the children arent set up right
-        GenerateDeck(); 
+        //GenerateDeck(); 
     }
-
+    /*
     public void GenerateDeck()
     {
         if (deckTypes.Count != 0 || deckClasses.Count != 0)
@@ -45,7 +37,8 @@ public class Deck : MonoBehaviour {
         }
         totalCards = deckClasses.Count;
     }
-
+    */
+    /*
     // instantiates card then passes it to the targetted player's field
     // thisll be used at the start of the round
     public GameObject DealCard(Hand hand)
@@ -65,9 +58,9 @@ public class Deck : MonoBehaviour {
             card.FlipOver();
 
             // sets a class for the card
-            card.cardClass = (Card.Class)selectedClass;
+            card.CardClass = (Card.Class)selectedClass;
             // sets a type for the card
-            card.cardType = (Card.Type)selectedType;
+            card.CardType = (Card.Type)selectedType;
             // sets the target for the card so it moves to the field
 
             // TODO make a child of something to organize it
@@ -80,5 +73,5 @@ public class Deck : MonoBehaviour {
         } // add logic for reshuffle or maybe make the update check for cards == 0 so it'll do it automatically
         else return null;
     }
-
+    */
 }

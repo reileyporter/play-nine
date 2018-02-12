@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Card : MonoBehaviour {
-    // UI related Variables
-    Vector3 targetPosition; // for following the mouse around
-    public GameObject cardsAssignedPosition; // where the card should be, as assigned by the deck or discard pile
-    Vector3 velocity = Vector3.zero; // for the SmoothDamp function
+
+    // for grabbing mechanics
     bool grabbed = false;
     public List<GameObject> nearbyObjects;
     Proximity proximity;
+    Vector3 targetPosition; // for following the mouse around
+    public GameObject cardsAssignedPosition; // where the card should be, as assigned by the deck or discard pile
+    Vector3 velocity = Vector3.zero; // for the SmoothDamp function
+
+    // card values
+    private int modifier;
+    public int Modifier { get; set; }
+    private int value;
+    public int Value { get; set; }
 
     // Logic Related Variables
     public enum Class
@@ -20,8 +27,8 @@ public class Card : MonoBehaviour {
         beast,
         golem
     }
-    public Class cardClass;
-
+    private Class cardClass;
+    public Class CardClass { get; set; }
     public enum Type
     {
         fire,
@@ -31,7 +38,8 @@ public class Card : MonoBehaviour {
         earth,
         water
     }
-    public Type cardType;
+    private Type cardType;
+    public Type CardType { get; set; }
 
     // Use this for initialization
     void Start () {

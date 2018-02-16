@@ -17,6 +17,14 @@ public class Deck : CardContainer {
         cardBack = transform.GetChild(0).gameObject; // gets the cards back, might not work if the children arent set up right
         //GenerateDeck(); 
     }
+/*
+public void Deal(Card card, CardContainer dest)
+private void SendCard(Card card, CardContainer dest)
+public void RecieveCard(Card card)
+private void AddCard(Card card)
+private void RemoveCard(Card card)
+*/
+
     /*
     public void GenerateDeck()
     {

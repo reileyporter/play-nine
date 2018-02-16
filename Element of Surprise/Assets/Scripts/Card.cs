@@ -64,6 +64,12 @@ public class Card : MonoBehaviour {
         }
 	}
 
+    public Card(Type assignedCardType, Class assignedCardClass)
+    {
+        cardType = assignedCardType;
+        cardClass = assignedCardClass;
+    }
+
     public void FlipOver()
     {
         Rotate90();

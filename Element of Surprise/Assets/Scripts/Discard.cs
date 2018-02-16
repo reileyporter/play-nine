@@ -7,8 +7,16 @@ public class Discard : CardContainer {
     public Card secondCard;
     private int numCards;
 
-	// Use this for initialization
-	void Start () {
+/*
+public void Deal(Card card, CardContainer dest)
+private void SendCard(Card card, CardContainer dest)
+public void RecieveCard(Card card)
+private void AddCard(Card card)
+private void RemoveCard(Card card)
+*/
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

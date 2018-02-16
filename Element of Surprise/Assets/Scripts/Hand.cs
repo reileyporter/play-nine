@@ -7,6 +7,14 @@ public class Hand : CardContainer {
     List<Card> cards;
     List<CardPosition> cardSlots;
 
+/*
+public void Deal(Card card, CardContainer dest)
+private void SendCard(Card card, CardContainer dest)
+public void RecieveCard(Card card)
+private void AddCard(Card card)
+private void RemoveCard(Card card)
+*/
+
     private void Start()
     {
         cards = new List<Card>();

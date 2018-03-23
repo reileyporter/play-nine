@@ -2,30 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour {
+public class Deck : CardContainer {
     // Visual Variables
-    GameObject deckTop;
-    public GameObject cardBack;
+    GameObject cardBack; // if the deck is nonempty then this will be visible, it is the visual back of the cards
     Card card;
-
-    // Gameplay Variables
-    List<int> deckTypes;
-    List<int> deckClasses;
-    int numDecks, totalCards;
+    private int numCards;
+    public int NumCards { get; set; }
     
 
 
     // Use this for initialization
     void Start()
     {
-        deckTop = transform.GetChild(0).gameObject; // gets the cards back
-        GenerateDeck(); 
+        cardBack = transform.GetChild(0).gameObject; // gets the cards back, might not work if the children arent set up right
+        //GenerateDeck(); 
     }
+/*
+public void Deal(Card card, CardContainer dest)
+private void SendCard(Card card, CardContainer dest)
+public void RecieveCard(Card card)
+private void AddCard(Card card)
+private void RemoveCard(Card card)
+*/
 
+    /*
     public void GenerateDeck()
     {
-        deckTypes.Clear();
-        deckClasses.Clear();
+        if (deckTypes.Count != 0 || deckClasses.Count != 0)
+        {
+            deckTypes.Clear();
+            deckClasses.Clear();
+        }
+
         for (int i = 0; i < numDecks; i++)
         {
             // j < num types * num classes
@@ -37,12 +45,13 @@ public class Deck : MonoBehaviour {
         }
         totalCards = deckClasses.Count;
     }
-
+    */
+    /*
     // instantiates card then passes it to the targetted player's field
     // thisll be used at the start of the round
-    public void DealCard(Hand hand)
+    public GameObject DealCard(Hand hand)
     {
-        if (totalCards > 0 && hand.IsFull() == false)
+        if (totalCards > 0)
         {
             // selects random card, saves its value, then removes it
             int randomValue = Random.Range(0, deckClasses.Count);
@@ -50,15 +59,16 @@ public class Deck : MonoBehaviour {
             int selectedType = deckTypes[randomValue];
             deckClasses.Remove(randomValue);
             deckTypes.Remove(randomValue);
+
             // generates a card to be passed
             var tempCard = Instantiate(cardBack, transform.position, transform.rotation);
             card = tempCard.GetComponent<Card>();
             card.FlipOver();
 
             // sets a class for the card
-            card.cardClass = (Card.Class)selectedClass;
+            card.CardClass = (Card.Class)selectedClass;
             // sets a type for the card
-            card.cardType = (Card.Type)selectedType;
+            card.CardType = (Card.Type)selectedType;
             // sets the target for the card so it moves to the field
 
             // TODO make a child of something to organize it
@@ -67,7 +77,9 @@ public class Deck : MonoBehaviour {
             // TargetField.AddCard(card);
             totalCards--;
 
+            return tempCard;
         } // add logic for reshuffle or maybe make the update check for cards == 0 so it'll do it automatically
+        else return null;
     }
-
+    */
 }
